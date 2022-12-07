@@ -1,4 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.surveytest.example.mapper.SurveyMapper">
+	<insert id="surveyNew" parameterType="Survey">
+		INSERT INTO st_survey(
+			s_title,
+			s_description
+		) VALUES (
+			'',
+			''
+		)
+		<selectKey resultType="int" keyProperty="sId" order="AFTER">
+        	SELECT LAST_INSERT_ID()
+    	</selectKey>   
+	</insert>
+	<select id="surveyList" resultType="Survey">
+	
+		SELECT		ROW_NUMBER() OVER(ORDER BY s_id) as rownum,
+					s_id	as	sId,
+					s_title as	title
+		FROM		st_survey					
+	</select>
 </mapper>
