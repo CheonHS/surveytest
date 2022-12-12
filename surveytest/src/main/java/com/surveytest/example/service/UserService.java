@@ -4,8 +4,6 @@ import java.util.Collection;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.stereotype.Service;
-
 import com.surveytest.example.domain.User;
 
 public interface UserService extends UserDetailsService {

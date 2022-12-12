@@ -9,8 +9,10 @@ import com.surveytest.example.domain.Survey;
 @Mapper
 public interface SurveyMapper {
 
-	public Survey surveyNew();
+	public void surveyWrite(Survey survey);
 
 	public List<Survey> surveyList();
+
+	public void surveyDelete(Survey survey);
 
 }

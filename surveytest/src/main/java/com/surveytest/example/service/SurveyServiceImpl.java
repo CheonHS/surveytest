@@ -15,13 +15,19 @@ public class SurveyServiceImpl implements SurveyService {
 	SurveyMapper surveyMapper;
 	
 	@Override
-	public Survey surveyNew() {
-		return surveyMapper.surveyNew();
+	public void surveyWrite(Survey survey) {
+		surveyMapper.surveyWrite(survey);
 	}
 
 	@Override
 	public List<Survey> surveyList() {
 		return surveyMapper.surveyList();
+	}
+
+	@Override
+	public void surveyDelete(Survey survey) {
+		surveyMapper.surveyDelete(survey);
+		
 	}
 
 }
