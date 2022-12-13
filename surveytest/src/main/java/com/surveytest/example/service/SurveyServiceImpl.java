@@ -30,4 +30,16 @@ public class SurveyServiceImpl implements SurveyService {
 		
 	}
 
+	@Override
+	public Survey surveyRow(Survey survey) {
+		return surveyMapper.surveyRow(survey);
+		
+	}
+
+	@Override
+	public void surveyEdit(Survey survey) {
+		surveyMapper.surveyEdit(survey);
+		
+	}
+
 }

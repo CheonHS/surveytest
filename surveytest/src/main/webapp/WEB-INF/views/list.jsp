@@ -21,13 +21,12 @@
 		display: inline-block;
 	} 
 </style>
-<script src="//code.jquery.com/jquery-3.6.1.min.js"></script>
 </head>
 <body>
+	<div id="topDiv">
+		<h2>설문지</h2>
+	</div>
 	<div id="allDiv">
-		<div id="topDiv">
-			<h2>설문지</h2>
-		</div>
 		<hr>
 		<div id="midDiv" align="center">
 			<c:if test="${!empty list }">
@@ -48,18 +47,5 @@
 		</div>
 	</div>
 </body>
-<script>
-	$(document).on('click', '#surveyNew', function () {
-
-		$.ajax({
-			  method: "POST",
-			  url: "/survey/New"
-		})
-		.done(function( msg ) {
-		    $('#allDiv').html(msg);
-		});
-		
-	});
-</script>
 </html>
 

@@ -30,4 +30,21 @@
 		WHERE		s_id = #{sId}
 	</delete>
 	
+	<!-- 설문지 정보 -->
+	<select id="surveyRow" parameterType="Survey" resultType="Survey">
+		SELECT		s_id			as	sId,
+					s_title			as	title,
+					s_description	as	description
+		FROM		st_survey
+		WHERE		s_id = #{sId}
+	</select>
+	
+	<!-- 설문지 수정 -->
+	<update id="surveyEdit" parameterType="Survey">
+		UPDATE		st_survey
+		SET			s_title	= #{title},
+					s_description = #{description}
+		WHERE		s_id = #{sId}
+	</update>
+	
 </mapper>

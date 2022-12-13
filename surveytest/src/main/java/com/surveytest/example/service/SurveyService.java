@@ -12,4 +12,8 @@ public interface SurveyService {
 
 	public void surveyDelete(Survey survey);
 
+	public Survey surveyRow(Survey survey);
+
+	public void surveyEdit(Survey survey);
+
 }

@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div id="topDiv">
-	<h2>설문지제목</h2>sId = ${s.sId}
+	<h2>설문지제목</h2>sId = ${s.sId }
 	<div id="btnDiv" style="float: right;">
 		<a href="/">뒤로가기</a>
 		<a href="/survey/delete?sId=${s.sId}">삭제하기</a>
@@ -16,7 +16,8 @@
 <hr>
 <div id="midDiv" align="center">
 	<div id="titleDiv" align="center">
-		<input type="text" name="title" id="title" placeholder="설문지 제목">
+		<input type="hidden" name="sId" id="sId" value="${s.sId }">
+		<input type="text" name="title" id="title" placeholder="설문지 제목" value="${s.title }">
 		<br>
 		<input type="text" name="description" id="description" placeholder="설문지 설명">
 	</div>

@@ -15,4 +15,8 @@ public interface SurveyMapper {
 
 	public void surveyDelete(Survey survey);
 
+	public Survey surveyRow(Survey survey);
+
+	public void surveyEdit(Survey survey);
+
 }
