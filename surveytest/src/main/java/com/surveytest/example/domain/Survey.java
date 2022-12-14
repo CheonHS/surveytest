@@ -41,59 +41,60 @@ public class Survey {
 		this.rownum = rownum;
 	}
 	
+	public class Question {
+		private int qId;
+		private int type;
+		private String qValue;
+		private List<Item> items;
+		
+		public int getqId() {
+			return qId;
+		}
+		public void setqId(int qId) {
+			this.qId = qId;
+		}
+		public int getType() {
+			return type;
+		}
+		public void setType(int type) {
+			this.type = type;
+		}
+		public String getqValue() {
+			return qValue;
+		}
+		public void setqValue(String qValue) {
+			this.qValue = qValue;
+		}
+		public List<Item> getItems() {
+			return items;
+		}
+		public void setItems(List<Item> items) {
+			this.items = items;
+		}
+		
+		
+	}
 	
+	public class Item {
+		private int iId;
+		private String iValue;
+
+		public int getiId() {
+			return iId;
+		}
+		public void setiId(int iId) {
+			this.iId = iId;
+		}
+		public String getiValue() {
+			return iValue;
+		}
+		public void setiValue(String iValue) {
+			this.iValue = iValue;
+		}		
+	}
 }
 
-class Question {
-	private int qId;
-	private int type;
-	private String value;
-	private List<Item> items;
-	
-	public int getqId() {
-		return qId;
-	}
-	public void setqId(int qId) {
-		this.qId = qId;
-	}
-	public int getType() {
-		return type;
-	}
-	public void setType(int type) {
-		this.type = type;
-	}
-	public String getValue() {
-		return value;
-	}
-	public void setValue(String value) {
-		this.value = value;
-	}
-	public List<Item> getItems() {
-		return items;
-	}
-	public void setItems(List<Item> items) {
-		this.items = items;
-	}
-	
-	
-}
 
-class Item {
-	private int iId;
-	private String value;
 
-	public int getiId() {
-		return iId;
-	}
-	public void setiId(int iId) {
-		this.iId = iId;
-	}
-	public String getValue() {
-		return value;
-	}
-	public void setValue(String value) {
-		this.value = value;
-	}
-	
-}
+
 

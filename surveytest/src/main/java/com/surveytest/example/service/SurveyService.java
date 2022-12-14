@@ -3,6 +3,7 @@ package com.surveytest.example.service;
 import java.util.List;
 
 import com.surveytest.example.domain.Survey;
+import com.surveytest.example.domain.Survey.Question;
 
 public interface SurveyService {
 
@@ -16,4 +17,7 @@ public interface SurveyService {
 
 	public void surveyEdit(Survey survey);
 
+	public void addQuestion(Survey survey);
+
+	public List<Question> listQuestion(Survey survey);
 }

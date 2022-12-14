@@ -54,26 +54,49 @@
 				<input type="hidden" name="sId" id="sId" value="${s.sId }">
 				<input type="text" name="title" id="title" placeholder="설문지 제목" value="${s.title }">
 				<br>
-				<input type="text" name="description" id="description" placeholder="설문지 설명">
+				<input type="text" name="description" id="description" placeholder="설문지 설명" value="${s.description }">
 			</div>
 			<hr>
-			<button class="qAddBtn">질문 추가</button>
-			<div class="questionDiv" align="center">
-				<div class="question">
-					<input type="text" name="qValue" class="qValue" placeholder="질문">
-					<select name="type">
-						<option value="1">객관식 질문</option>
-						<option value="2">체크 박스</option>
-						<option value="3">드롭 다운</option>
-					</select>
-					<div class="item" align="left">
-						<input type="text" name="iValue" class="iValue">
-						<button>X</button>
-					</div>
-					<button>옵션 추가</button> 또는 <button>'기타' 추가</button>
-				</div>
-				<button class="qDelBtn">질문 삭제</button>
-			</div><!-- questionDiv -->
+			<button class="qAddBtn">질문 추가</button><br>
+			<c:if test="${not empty q}">
+				<c:forEach items="${q }" var="list">
+					<input type="hidden" name="qId" value="${list.qId }">
+					<div class="questionDiv" align="center">
+						<input type="hidden" name="qId" value="${list.qId }">
+						<div class="question">
+							<input type="text" name="qValue" class="qValue" placeholder="질문">
+							<select name="qType">
+								<c:choose>
+									<c:when test="${list.qType eq 1 }">
+										<option value="1" selected>객관식 질문</option>
+									</c:when>
+									<c:when test="${list.qType eq 2 }">
+										<option value="2" selected>체크 박스</option>
+									</c:when>
+									<c:when test="${list.qType eq 3 }">
+										<option value="3" selected>드롭 다운</option>
+									</c:when>
+									<c:when test="${list.qType ne 1 }">
+										<option value="1">객관식 질문</option>
+									</c:when>
+									<c:when test="${list.qType ne 2 }">
+										<option value="2">체크 박스</option>
+									</c:when>
+									<c:when test="${list.qType ne 3 }">
+										<option value="3">드롭 다운</option>
+									</c:when>
+								</c:choose>		
+							</select>
+							<div class="item" align="left">
+								<input type="text" name="iValue" class="iValue">
+								<button>X</button>
+							</div>
+							<button>옵션 추가</button> 또는 <button>'기타' 추가</button>
+						</div>
+						<button class="qDelBtn">질문 삭제</button>
+					</div><!-- questionDiv -->
+				</c:forEach>
+			</c:if>	
 		</div>
 		<hr>
 		<div id="botDiv" align="center">
@@ -104,24 +127,20 @@
 
 	//	질문 추가
 	$(document).on('click', '.qAddBtn', function(){
-		$(this).after("" +
-			+ "<div class='questionDiv' align='center'>"
-			+ "	<div class='question'>"
-			+ "		<input type='text' name='qValue' class='qValue' placeholder='질문'>"
-			+ "		<select name='type'>"
-			+ "			<option value='1'>객관식 질문</option>"
-			+ "			<option value='2'>체크 박스</option>"
-			+ "			<option value='3'>드롭 다운</option>"
-			+ "		</select>"
-			+ "		<div class='item' align='left'>"
-			+ "			<input type='text' name='iValue' class='iValue'>"
-			+ "			<button>X</button>"
-			+ "		</div>"
-			+ "		<button>옵션 추가</button> 또는 <button>'기타' 추가</button>"
-			+ "	</div>"
-			+ "	<button class='qDelBtn'>질문 삭제</button>"
-			+ "</div>"
-		);
+
+		let sId = $('#sId').val();
+		
+		$.ajax({
+			method: "POST",
+			url: "/survey/addQuestion",
+			data: { sId: sId }
+		})
+		
+		.done(function( msg ) {
+		    $('#allDiv').html(msg); 
+		});
+		
+		location.reload();
 	});
 
 	//	질문 삭제

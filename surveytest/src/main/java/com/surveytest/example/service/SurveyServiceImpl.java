@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.surveytest.example.domain.Survey;
+import com.surveytest.example.domain.Survey.Question;
 import com.surveytest.example.mapper.SurveyMapper;
 
 @Service
@@ -40,6 +41,17 @@ public class SurveyServiceImpl implements SurveyService {
 	public void surveyEdit(Survey survey) {
 		surveyMapper.surveyEdit(survey);
 		
+	}
+
+	@Override
+	public void addQuestion(Survey survey) {
+		surveyMapper.addQuestion(survey);
+		
+	}
+
+	@Override
+	public List<Question> listQuestion(Survey survey) {
+		return surveyMapper.listQuestion(survey);
 	}
 
 }

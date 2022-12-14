@@ -37,6 +37,7 @@
 					s_description	as	description
 		FROM		st_survey
 		WHERE		s_id = #{sId}
+		
 	</select>
 	
 	<!-- 설문지 수정 -->
@@ -46,5 +47,27 @@
 					s_description = #{description}
 		WHERE		s_id = #{sId}
 	</update>
+	
+	<!-- 질문 추가 -->
+	<insert id="addQuestion" parameterType="Survey">
+		INSERT INTO st_question(
+			q_type,
+			q_value,
+			s_id
+		) VALUES (
+			'1',
+			'',
+			#{sId}
+		)
+	</insert>
+	
+	<!-- 질문 목록 -->
+	<select id="listQuestion" parameterType="Survey" resultType="Survey">
+		SELECT		q_id			as	qId,
+					q_type			as	type,
+					q_value			as	qValue
+		FROM		st_question
+		WHERE		s_id = #{sId}
+	</select>
 	
 </mapper>
