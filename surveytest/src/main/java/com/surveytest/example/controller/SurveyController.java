@@ -1,8 +1,5 @@
 package com.surveytest.example.controller;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.surveytest.example.domain.Survey;
-import com.surveytest.example.domain.Survey.Question;
 import com.surveytest.example.service.SurveyService;
 
 @Controller
@@ -46,6 +42,8 @@ public class SurveyController {
 		survey.setQuestions(surveyService.listQuestion(survey));
 		model.addAttribute("q", survey.getQuestions());
 		
+		System.out.println(survey.getQuestions());
+		
 		return "/survey";
 	}
 	
@@ -56,7 +54,6 @@ public class SurveyController {
 		
 		survey.setQuestions(surveyService.listQuestion(survey));
 		model.addAttribute("q", survey.getQuestions());
-		
 		return "/survey_ajax";
 	}
 	

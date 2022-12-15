@@ -45,7 +45,9 @@ public class Survey {
 		private int qId;
 		private int type;
 		private String qValue;
+		private int sId;
 		private List<Item> items;
+		
 		
 		public int getqId() {
 			return qId;
@@ -65,20 +67,25 @@ public class Survey {
 		public void setqValue(String qValue) {
 			this.qValue = qValue;
 		}
+		public int getsId() {
+			return sId;
+		}
+		public void setsId(int sId) {
+			this.sId = sId;
+		}
 		public List<Item> getItems() {
 			return items;
 		}
 		public void setItems(List<Item> items) {
 			this.items = items;
-		}
-		
-		
+		}	
 	}
 	
 	public class Item {
 		private int iId;
 		private String iValue;
-
+		private int qId;
+		
 		public int getiId() {
 			return iId;
 		}
@@ -90,8 +97,16 @@ public class Survey {
 		}
 		public void setiValue(String iValue) {
 			this.iValue = iValue;
-		}		
+		}
+		public int getqId() {
+			return qId;
+		}
+		public void setqId(int qId) {
+			this.qId = qId;
+		}
+		
 	}
+	
 }
 
 

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.surveytest.example.mapper.SurveyMapper">
+
 	<!-- 새 설문지 작성 -->
 	<insert id="surveyWrite" parameterType="Survey">
 		INSERT INTO st_survey(
@@ -60,9 +61,8 @@
 			#{sId}
 		)
 	</insert>
-	
 	<!-- 질문 목록 -->
-	<select id="listQuestion" parameterType="Survey" resultType="Survey">
+	<select id="listQuestion" parameterType="Survey" resultType="Question" >
 		SELECT		q_id			as	qId,
 					q_type			as	type,
 					q_value			as	qValue
