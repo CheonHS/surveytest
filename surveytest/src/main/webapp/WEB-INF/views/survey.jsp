@@ -63,6 +63,7 @@
 				<c:forEach items="${q }" var="list">
 					<c:choose>
 						<c:when test="${list.type == 1 }">
+							<input type="hidden" name="type" class="type" value="${list.type }">
 							<input type="hidden" name="qId" value="${list.qId }">
 							<div class="questionDiv" align="center">
 								<input type="hidden" name="qId" value="${list.qId }">
@@ -83,6 +84,7 @@
 							</div><!-- questionDiv -->
 						</c:when>
 						<c:when test="${list.type == 2 }">
+							<input type="hidden" name="type" class="type" value="${list.type }">
 							<input type="hidden" name="qId" value="${list.qId }">
 							<div class="questionDiv" align="center">
 								<input type="hidden" name="qId" value="${list.qId }">
@@ -112,13 +114,38 @@
 	</div><!-- allDiv -->
 </body>
 <script>
-	$(document).on('click', '#qAddBtn', function(){
+	$(document).on('click', '#checkBtn', function(){
 		let questions = [];
 		$.each('.questionDiv', function(){
-			let q_type = $(this).find('.')
-			let q_value
-		}
+			let q_type = $(this).find('.type').val();
+			let q_value = $(this).find('.qValue').val();
+			let items = [];
+			$.each('.item', function () {
+				let i_value = $(this).find('.iValue').val();
+				let item = {
+					iValue: i_value
+				};
+				items.push(item);
+			});
+			let question = {
+				qValue: q_value,
+				type: q_type,
+				items: items
+			}
+			questions.push(question);
+		});
+
+		let s_title = $('#sId').val();
+		let s_description = $('#description').val();
 		
+		let survey = {
+			title: s_title,
+			description: s_description,
+			questions: questions
+		};
+			$.ajx(
+				data: survey
+			)
 	});
 </script>
 </html>
