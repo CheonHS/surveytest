@@ -21,6 +21,7 @@
 		display: inline-block;
 	} 
 </style>
+<script src="//code.jquery.com/jquery-3.6.1.min.js"></script>
 </head>
 <body>
 	<div id="topDiv">
@@ -31,10 +32,12 @@
 		<div id="midDiv" align="center">
 			<c:if test="${!empty list }">
 				<c:forEach var="s" items="${list }" >
-					<div class="surveyRow" onclick="location.href='/survey?sId=${s.sId}'">
+					<div class="surveyRow">
+						<input type="hidden" name="sId" value="${s.sId }" />
 						${s.rownum }<br>
 						${s.title }
 					</div>
+					<a href="/survey?sId=${s.sId }">link</a>
 				</c:forEach>
 			</c:if>
 			<c:if test="${empty list }">
@@ -47,5 +50,7 @@
 		</div>
 	</div>
 </body>
+<script>
+</script>
 </html>
 

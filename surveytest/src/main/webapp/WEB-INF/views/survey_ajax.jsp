@@ -17,41 +17,48 @@
 	<button class="qAddBtn">질문 추가</button><br>
 	<c:if test="${not empty q}">
 		<c:forEach items="${q }" var="list">
-			<input type="hidden" name="qId" value="${list.qId }">
-			<div class="questionDiv" align="center">
-				<input type="hidden" name="qId" value="${list.qId }">
-				<div class="question">
-					<input type="text" name="qValue" class="qValue" placeholder="질문">
-					<select name="qType">
-						<c:choose>
-							<c:when test="${list.qType == 1 }">
+			<c:choose>
+				<c:when test="${list.type == 1 }">
+					<input type="hidden" name="qId" value="${list.qId }">
+					<div class="questionDiv" align="center">
+						<input type="hidden" name="qId" value="${list.qId }">
+						<div class="question">
+							<input type="text" name="qValue" class="qValue" placeholder="질문">
+							<select name="qType">
 								<option value="1" selected>객관식 질문</option>
-							</c:when>
-							<c:when test="${list.qType == 2 }">
-								<option value="2" selected>체크 박스</option>
-							</c:when>
-							<c:when test="${list.qType == 3 }">
-								<option value="3" selected>드롭 다운</option>
-							</c:when>
-							<c:when test="${list.qType != 1 }">
-								<option value="1">객관식 질문</option>
-							</c:when>
-							<c:when test="${list.qType != 2 }">
 								<option value="2">체크 박스</option>
-							</c:when>
-							<c:when test="${list.qType != 3 }">
 								<option value="3">드롭 다운</option>
-							</c:when>
-						</c:choose>		
-					</select>
-					<div class="item" align="left">
-						<input type="text" name="iValue" class="iValue">
-						<button>X</button>
-					</div>
-					<button>옵션 추가</button> 또는 <button>'기타' 추가</button>
-				</div>
-				<button class="qDelBtn">질문 삭제</button>
-			</div><!-- questionDiv -->
+							</select>
+							<div class="item" align="left">
+								<input type="text" name="iValue" class="iValue">
+								<button>X</button>
+							</div>
+							<button>옵션 추가</button> 또는 <button>'기타' 추가</button>
+						</div>
+					<button class="qDelBtn">질문 삭제</button>
+					</div><!-- questionDiv -->
+				</c:when>
+				<c:when test="${list.type == 2 }">
+					<input type="hidden" name="qId" value="${list.qId }">
+					<div class="questionDiv" align="center">
+						<input type="hidden" name="qId" value="${list.qId }">
+						<div class="question">
+							<input type="text" name="qValue" class="qValue" placeholder="질문">
+							<select name="qType">
+								<option value="1">객관식 질문</option>
+								<option value="2" selected>체크 박스</option>
+								<option value="3">드롭 다운</option>
+							</select>
+							<div class="item" align="left">
+								<input type="text" name="iValue" class="iValue">
+								<button>X</button>
+							</div>
+							<button>옵션 추가</button> 또는 <button>'기타' 추가</button>
+						</div>
+					<button class="qDelBtn">질문 삭제</button>
+					</div><!-- questionDiv -->
+				</c:when>
+			</c:choose>
 		</c:forEach>
 	</c:if>	
 </div>

@@ -42,7 +42,8 @@
 			<a href="/">뒤로가기</a>
 			<a href="/survey/delete?sId=${s.sId}">삭제하기</a>
 		</div>
-	</div>			
+	</div>
+	<button id="checkBtn">체크</button>			
 	<div id="allDiv">
 		<div align="center">
 			<a href="">질문</a>
@@ -57,7 +58,7 @@
 				<input type="text" name="description" id="description" placeholder="설문지 설명" value="${s.description }">
 			</div>
 			<hr>
-			<button class="qAddBtn">질문 추가</button><br>
+			<button id="qAddBtn">질문 추가</button><br>
 			<c:if test="${not empty q}">
 				<c:forEach items="${q }" var="list">
 					<c:choose>
@@ -111,48 +112,13 @@
 	</div><!-- allDiv -->
 </body>
 <script>
-	//	ajax 수정	
-	$("input").change(function (){
-
-		let sId = $('#sId').val();
-		let title = $('#title').val();
-		let description = $('#description').val();
+	$(document).on('click', '#qAddBtn', function(){
+		let questions = [];
+		$.each('.questionDiv', function(){
+			let q_type = $(this).find('.')
+			let q_value
+		}
 		
-		$.ajax({
-			method: "POST",
-			url: "/survey/edit",
-			data: { sId: sId, title: title, description: description }
-		})
-		
-		.done(function( msg ) {
-		    $('#allDiv').html(msg);
-		});
-		
-		location.reload();
-		
-	});
-
-	//	질문 추가
-	$(document).on('click', '.qAddBtn', function(){
-
-		let sId = $('#sId').val();
-		
-		$.ajax({
-			method: "POST",
-			url: "/survey/addQuestion",
-			data: { sId: sId }
-		})
-		
-		.done(function( msg ) {
-		    $('#allDiv').html(msg); 
-		});
-		
-		location.reload();
-	});
-
-	//	질문 삭제
-	$(document).on('click', '.qDelBtn', function(){
-		$(this).parent().remove();
 	});
 </script>
 </html>

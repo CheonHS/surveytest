@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.surveytest.example.domain.Question;
 import com.surveytest.example.domain.Survey;
-import com.surveytest.example.domain.Survey.Question;
 import com.surveytest.example.mapper.SurveyMapper;
 
 @Service

@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.surveytest.example.domain.Survey;
@@ -32,18 +31,11 @@ public class SurveyController {
 	}
 	
 	@RequestMapping(value="/survey")
-	public String survey(@RequestParam("sId") String sId, Survey survey, Model model) {
-		if(sId!=null && sId!="") {
-			survey.setsId(Integer.parseInt(sId));
-			survey = surveyService.surveyRow(survey);
-		}
-		model.addAttribute("s", survey);
-
+	public String survey(Survey survey, Model model) {
+		survey = surveyService.surveyRow(survey);
 		survey.setQuestions(surveyService.listQuestion(survey));
+		model.addAttribute("s", survey);
 		model.addAttribute("q", survey.getQuestions());
-		
-		System.out.println(survey.getQuestions());
-		
 		return "/survey";
 	}
 	
@@ -51,9 +43,6 @@ public class SurveyController {
 	public String surveyAjax(Survey survey, Model model) {
 		survey = surveyService.surveyRow(survey);
 		model.addAttribute("s", survey);
-		
-		survey.setQuestions(surveyService.listQuestion(survey));
-		model.addAttribute("q", survey.getQuestions());
 		return "/survey_ajax";
 	}
 	
