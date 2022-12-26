@@ -5,7 +5,7 @@ import java.util.List;
 public class Survey {
 	private int sId;
 	private String title;
-	private String description;
+	private String sDesc;
 	private List<Question> questions;
 	
 	private int rownum;
@@ -22,11 +22,11 @@ public class Survey {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getDescription() {
-		return description;
+	public String getsDesc() {
+		return sDesc;
 	}
-	public void setDescription(String description) {
-		this.description = description;
+	public void setsDesc(String sDesc) {
+		this.sDesc = sDesc;
 	}
 	public List<Question> getQuestions() {
 		return questions;

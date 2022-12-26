@@ -10,17 +10,24 @@ import com.surveytest.example.domain.Survey;
 @Mapper
 public interface SurveyMapper {
 
+	//	설문 작성
 	public void surveyWrite(Survey survey);
-
+	
+	//	설문 목록
 	public List<Survey> surveyList();
 
-	public void surveyDelete(Survey survey);
-
+	//	설문 상세
 	public Survey surveyRow(Survey survey);
-
-	public void surveyEdit(Survey survey);
-
+	
+	//	Question ----------
+	
+	//	질문 추가
 	public void addQuestion(Survey survey);
+	
+	//	질문 목록	
+	public List<Question> listQuetion(Survey survey);
 
-	public List<Question> listQuestion(Survey survey);
+	//	질문 삭제
+	public void delQuestion(Question question);
+
 }

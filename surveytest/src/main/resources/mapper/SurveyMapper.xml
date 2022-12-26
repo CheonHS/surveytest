@@ -6,7 +6,7 @@
 	<insert id="surveyWrite" parameterType="Survey">
 		INSERT INTO st_survey(
 			s_title,
-			s_description
+			s_desc
 		) VALUES (
 			'',
 			''
@@ -25,29 +25,15 @@
 		FROM		st_survey					
 	</select>
 	
-	<!-- 설문지 삭제 -->
-	<delete id="surveyDelete" parameterType="Survey">
-		DELETE FROM st_survey
-		WHERE		s_id = #{sId}
-	</delete>
-	
 	<!-- 설문지 정보 -->
 	<select id="surveyRow" parameterType="Survey" resultType="Survey">
 		SELECT		s_id			as	sId,
 					s_title			as	title,
-					s_description	as	description
+					s_desc			as	sDesc
 		FROM		st_survey
 		WHERE		s_id = #{sId}
 		
 	</select>
-	
-	<!-- 설문지 수정 -->
-	<update id="surveyEdit" parameterType="Survey">
-		UPDATE		st_survey
-		SET			s_title	= #{title},
-					s_description = #{description}
-		WHERE		s_id = #{sId}
-	</update>
 	
 	<!-- 질문 추가 -->
 	<insert id="addQuestion" parameterType="Survey">
@@ -61,8 +47,9 @@
 			#{sId}
 		)
 	</insert>
+	
 	<!-- 질문 목록 -->
-	<select id="listQuestion" parameterType="Survey" resultType="Question" >
+	<select id="listQuetion" parameterType="Survey" resultType="Question">
 		SELECT		q_id			as	qId,
 					q_type			as	type,
 					q_value			as	qValue
@@ -70,4 +57,9 @@
 		WHERE		s_id = #{sId}
 	</select>
 	
+	<!-- 질문 삭제 -->
+	<delete id="delQuestion" parameterType="Question">
+		DELETE FROM st_question
+		WHERE	q_id = ${qId}
+	</delete>
 </mapper>

@@ -15,43 +15,42 @@ public class SurveyServiceImpl implements SurveyService {
 	@Autowired
 	SurveyMapper surveyMapper;
 	
+	//	설문 작성
 	@Override
 	public void surveyWrite(Survey survey) {
 		surveyMapper.surveyWrite(survey);
 	}
-
+	//	설문 목록
 	@Override
 	public List<Survey> surveyList() {
 		return surveyMapper.surveyList();
 	}
-
-	@Override
-	public void surveyDelete(Survey survey) {
-		surveyMapper.surveyDelete(survey);
-		
-	}
-
+	//	설문 상세
 	@Override
 	public Survey surveyRow(Survey survey) {
 		return surveyMapper.surveyRow(survey);
 		
 	}
-
+	
+	//	Question ----------
+	
+	//	질문 목록
 	@Override
-	public void surveyEdit(Survey survey) {
-		surveyMapper.surveyEdit(survey);
-		
+	public List<Question> listQuetion(Survey survey) {
+		return surveyMapper.listQuetion(survey);
 	}
-
+	
+	//	질문 추가
 	@Override
 	public void addQuestion(Survey survey) {
 		surveyMapper.addQuestion(survey);
 		
 	}
-
+	//	질문 삭제
 	@Override
-	public List<Question> listQuestion(Survey survey) {
-		return surveyMapper.listQuestion(survey);
+	public void delQuestion(Question question) {
+		surveyMapper.delQuestion(question);
+		
 	}
 
 }
