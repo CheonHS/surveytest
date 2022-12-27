@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.surveytest.example.domain.Item;
 import com.surveytest.example.domain.Question;
 import com.surveytest.example.domain.Survey;
 
@@ -29,5 +30,16 @@ public interface SurveyMapper {
 
 	//	질문 삭제
 	public void delQuestion(Question question);
+	
+	//	Item ----------
+	
+	//	옵션 목록
+	public List<Item> listItem(Question question);
+
+	//	옵션 추가
+	public void addItem(Question question);
+	
+	//	옵션 삭제
+	public void delItem(Item item);
 
 }

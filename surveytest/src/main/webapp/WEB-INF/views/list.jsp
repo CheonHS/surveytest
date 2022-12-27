@@ -18,8 +18,8 @@
 <script src="//code.jquery.com/jquery-3.6.1.min.js"></script>
 </head>
 <body>
-	<div id="topDiv">
-		<h2>설문지</h2>
+	<h2>설문지</h2>
+	<div id="topDiv" align="center">	
 	</div>
 	<hr>
 	<div id="midDiv" align="center">

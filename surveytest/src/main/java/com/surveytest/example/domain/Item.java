@@ -5,6 +5,8 @@ public class Item {
 	private String iValue;
 	private int qId;
 	
+	private int rownum;
+	
 	public int getiId() {
 		return iId;
 	}
@@ -23,5 +25,13 @@ public class Item {
 	public void setqId(int qId) {
 		this.qId = qId;
 	}
+	
+	public int getRownum() {
+		return rownum;
+	}
+	public void setRownum(int rownum) {
+		this.rownum = rownum;
+	}
+	
 	
 }

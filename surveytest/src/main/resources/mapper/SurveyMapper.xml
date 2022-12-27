@@ -62,4 +62,31 @@
 		DELETE FROM st_question
 		WHERE	q_id = ${qId}
 	</delete>
+	
+	<!-- 옵션 목록 -->
+	<select id="listItem" parameterType="Question" resultType="Item">
+		SELECT		ROW_NUMBER() OVER(ORDER BY i_id) as rownum,
+					i_id			as	iId,
+					i_value			as	iValue,
+					q_id			as	qId
+		FROM		st_item
+		WHERE		q_id = #{qId}
+	</select>
+	
+	<!-- 옵션 추가 -->
+	<insert id="addItem" parameterType="Question">
+		INSERT INTO st_item(
+			i_value,
+			q_id
+		) VALUES (
+			'',
+			#{qId}
+		)
+	</insert>
+	
+	<!-- 옵션 삭제 -->
+	<delete id="delItem" parameterType="Item">
+		DELETE FROM st_item
+		WHERE	i_id = ${iId}
+	</delete>
 </mapper>

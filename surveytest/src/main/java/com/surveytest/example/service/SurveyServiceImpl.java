@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.surveytest.example.domain.Item;
 import com.surveytest.example.domain.Question;
 import com.surveytest.example.domain.Survey;
 import com.surveytest.example.mapper.SurveyMapper;
@@ -50,6 +51,22 @@ public class SurveyServiceImpl implements SurveyService {
 	@Override
 	public void delQuestion(Question question) {
 		surveyMapper.delQuestion(question);
+		
+	}
+	
+	//	옵션 목록
+	@Override
+	public List<Item> listItem(Question question) {
+		return surveyMapper.listItem(question);
+	}
+	@Override
+	public void addItem(Question question) {
+		surveyMapper.addItem(question);
+		
+	}
+	@Override
+	public void delItem(Item item) {
+		surveyMapper.delItem(item);
 		
 	}
 
