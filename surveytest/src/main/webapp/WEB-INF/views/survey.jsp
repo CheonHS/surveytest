@@ -27,7 +27,7 @@
 <body>
 	<h2>설문지</h2>
 	<div id="topDiv" align="center">
-		<button id="">질문</button>
+		<button id="surveyBtn">질문</button>
 		<button id="responseBtn">응답</button>
 	</div>
 	<hr>
@@ -43,11 +43,22 @@
 		<c:if test="${!empty s.questions }">
 			<c:forEach var="qq" items="${s.questions }" >
 				<div class="qDiv">
+					<input type="hidden" class="qId" value="${qq.qId }">
 					<input type="text" class="qValue" value="${qq.qValue }">
-					<select class="qType">
-						<option value="1">객관식 질문</option>
-						<option value="2">주관식 질문</option>
-					</select>
+					<c:choose>
+						<c:when test="${qq.type eq 1 }">
+							<select class="qType">
+								<option value="1" selected>객관식 질문</option>
+								<option value="2">주관식 질문</option>
+							</select>
+						</c:when>
+						<c:when test="${qq.type eq 2 }">
+							<select class="qType">
+								<option value="1">객관식 질문</option>
+								<option value="2" selected>주관식 질문</option>
+							</select>
+						</c:when>
+					</c:choose>
 					<c:forEach var="i" items="${qq.items }" >
 						<c:if test="${!empty i }">
 							<div class="iDiv" align="left">
@@ -63,15 +74,69 @@
 				</div><br>			
 			</c:forEach>
 		</c:if>
+		<button id="updateBtn">작성 완료</button>
 	</div><!-- midDiv -->
 	<hr>
 	<div id="botDiv" align="center">
+		
 	</div>
 </body>
 <script>
+	$(document).on('click', '#updateBtn', function () {
+		let questions = [];
+		$('.qDiv').each( function() {
+			let q_id = $(this).find('.qId').val();
+			let q_value = $(this).find('.qValue').val();
+			let q_type = $(this).find('.qType option:selected').val();
+			let items = [];
 
+			let i_div = $(this).find('.iDiv').get(); 
+			$(i_div).each(function () {
+				let i_id = $(this).find('.iId').val();
+				let i_value = $(this).find('.iValue').val();
+				let item = {
+					iId: i_id,
+					iValue: i_value
+				};
+				items.push(item);
+			});
+				
+			let question = {
+				qId: q_id,
+				qValue: q_value,
+				type: q_type,
+				items: items
+			};
+			questions.push(question);
+		});
 
+		let s_id = $('#sId').val();
+		let s_title = $('#title').val();
+		let s_desc = $('#sDesc').val();
 
+		let survey = {
+			sId: s_id,
+			title: s_title,
+			sDesc: s_desc,
+			questions: questions
+		};
+
+		console.log(survey);
+
+		$.ajax({
+			type : "POST", 
+			url : "/survey/jsonUpdate",  
+			dataType : 'json',      
+			contentType : 'application/json',            
+			data : JSON.stringify(survey),                   
+		})
+		.done(function( msg ) {
+		    $('#midDiv').html(msg);
+		});
+		
+	});
+
+	
 	//	질문 추가
 	$(document).on('click', '#qAdd', function(){
 		let sId = $('#sId').val();

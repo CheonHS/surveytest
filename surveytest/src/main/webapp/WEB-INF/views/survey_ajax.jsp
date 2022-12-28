@@ -13,14 +13,25 @@
 	<c:forEach var="qq" items="${s.questions }" >
 		<div class="qDiv">
 			<input type="text" class="qValue" value="${qq.qValue }">
-			<select class="qType">
-				<option value="1">객관식 질문</option>
-				<option value="2">주관식 질문</option>
-			</select> 		
+			<c:choose>
+				<c:when test="${qq.type eq 1 }">
+					<select class="qType">
+						<option value="1" selected>객관식 질문</option>
+						<option value="2">주관식 질문</option>
+					</select>
+				</c:when>
+				<c:when test="${qq.type eq 2 }">
+					<select class="qType">
+						<option value="1">객관식 질문</option>
+						<option value="2" selected>주관식 질문</option>
+					</select>
+				</c:when>
+			</c:choose>
 			<c:forEach var="i" items="${qq.items }" >
 				<c:if test="${!empty i }">
 					<div class="iDiv" align="left">
-						${i.rownum } / ${i.iValue } <button class="iDel">옵션 삭제</button>
+						${i.rownum } <input type="text" class="iValue" value="${i.iValue }">
+						<button class="iDel">옵션 삭제</button>
 						<input type="hidden" class="iId" value="${i.iId }">	
 					</div>
 				</c:if>
@@ -31,3 +42,4 @@
 		</div><br>			
 	</c:forEach>
 </c:if>
+<button id="updateBtn">작성 완료</button>

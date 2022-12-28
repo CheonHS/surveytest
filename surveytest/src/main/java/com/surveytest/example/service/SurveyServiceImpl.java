@@ -69,5 +69,27 @@ public class SurveyServiceImpl implements SurveyService {
 		surveyMapper.delItem(item);
 		
 	}
+	//	해당 질문 옵션 전체 삭제
+	@Override
+	public void delItemInQuestion(Question question) {
+		surveyMapper.delItemInQuestion(question);
+	
+	//	Update ----------
+		
+	}
+	@Override
+	public void editSurvey(Survey survey) {
+		surveyMapper.editSurvey(survey);
+		
+	}
+	@Override
+	public void editQuestion(List<Question> questions) {
+		surveyMapper.editQuestion(questions);
+		
+	}
+	@Override
+	public void editItem(List<Item> items) {
+		surveyMapper.editItem(items);	
+	}
 
 }

@@ -89,4 +89,19 @@
 		DELETE FROM st_item
 		WHERE	i_id = ${iId}
 	</delete>
+	
+	<!-- 해당 질문 옵션 전체 삭제 -->
+	<delete id="delItemInQuestion" parameterType="Question">
+		DELETE FROM st_item
+		WHERE	q_id = ${qId}
+	</delete>
+	
+	<!-- 질문 수정 -->
+	<update id="editSurvey" parameterType="Survey">
+		UPDATE	st_survey
+		SET		s_title = #{title},
+				s_desc = #{sDesc}
+		WHERE	s_id = #{sId}	
+		
+	</update>
 </mapper>

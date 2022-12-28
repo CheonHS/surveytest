@@ -8,6 +8,8 @@ import com.surveytest.example.domain.Survey;
 
 public interface SurveyService {
 
+	//	Survey ----------
+	
 	//	설문 작성
 	public void surveyWrite(Survey survey);
 	
@@ -39,5 +41,19 @@ public interface SurveyService {
 	//	옵션 삭제
 	public void delItem(Item item);
 
+	//	해당 질문 옵션 전체 삭제
+	public void delItemInQuestion(Question question);
+
+	//	Update ----------
+	
+	//	설문 수정
+	public void editSurvey(Survey survey);
+
+	//	질문 수정
+	public void editQuestion(List<Question> questions);
+
+	//	옵션 수정
+	public void editItem(List<Item> items);
+	
 
 }
