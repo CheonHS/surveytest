@@ -20,10 +20,11 @@ spring:
       suffix: ".jsp"
   
   datasource:
-    url: jdbc:mysql://localhost:3306/surveytest?characterEncoding=UTF-8&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/surveytest?characterEncoding=UTF-8&serverTimezone=UTC&allowMultiQueries=true
     username: root
     password: 1234
     driver-class-name: com.mysql.cj.jdbc.Driver
+    
 
   session:
     jdbc:

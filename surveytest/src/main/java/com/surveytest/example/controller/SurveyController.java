@@ -107,11 +107,16 @@ public class SurveyController {
 	@RequestMapping(value="/survey/jsonUpdate")
 	public String response(@RequestBody Survey survey, Model model) {
 		surveyService.editSurvey(survey);
-//		surveyService.editQuestion(survey.getQuestions());
-//		for(Question q : survey.getQuestions()) {
-//			surveyService.editItem(q.getItems());
-//		}
-		return surveyAjax(survey, model);
+		if(!survey.getQuestions().isEmpty()) {
+			surveyService.editQuestion(survey.getQuestions());
+			for(Question q : survey.getQuestions()) {
+				if(!q.getItems().isEmpty()) {
+					surveyService.editItem(q.getItems());
+				}
+			}
+		}
+		model.addAttribute("s", survey);
+		return "/survey_ajax";
 	}
 	
 }

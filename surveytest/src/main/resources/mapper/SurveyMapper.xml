@@ -96,12 +96,30 @@
 		WHERE	q_id = ${qId}
 	</delete>
 	
-	<!-- 질문 수정 -->
+	<!-- 설문 수정 -->
 	<update id="editSurvey" parameterType="Survey">
 		UPDATE	st_survey
 		SET		s_title = #{title},
 				s_desc = #{sDesc}
-		WHERE	s_id = #{sId}	
-		
+		WHERE	s_id = #{sId}		
+	</update>
+	
+	<!-- 질문 수정 -->
+	<update id="editQuestion" parameterType="java.util.List">
+		<foreach collection="list" item="question" index="i" separator=";">
+			UPDATE	st_question
+			SET		q_type = #{question.type},
+					q_value = #{question.qValue}
+			WHERE	q_id = #{question.qId}
+		</foreach>
+	</update>
+	
+	<!-- 옵션 수정 -->
+	<update id="editItem" parameterType="java.util.List">
+		<foreach collection="list" item="item" index="i" separator=";">
+			UPDATE	st_item
+			SET		i_value = #{item.iValue}
+			WHERE	i_id = #{item.iId}	
+		</foreach>
 	</update>
 </mapper>
