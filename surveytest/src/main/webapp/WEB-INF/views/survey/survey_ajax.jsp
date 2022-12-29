@@ -6,7 +6,6 @@
 	title : <input type="text" id="title" value="${s.title }"><br>
 	sDesc : <input type="text" id="sDesc" value="${s.sDesc }"><br>
 </div>
-
 <button id="qAdd">질문 추가</button>
 
 <c:if test="${!empty s.questions }">
@@ -30,7 +29,7 @@
 			<c:forEach var="i" items="${qq.items }" >
 				<c:if test="${!empty i }">
 					<div class="iDiv" align="left">
-						${i.rownum } <input type="text" class="iValue" value="${i.iValue }">
+						<input type="text" class="iValue" value="${i.iValue }">
 						<button class="iDel">옵션 삭제</button>
 						<input type="hidden" class="iId" value="${i.iId }">	
 					</div>

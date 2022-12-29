@@ -24,16 +24,10 @@ public interface SurveyService {
 	//	질문 추가
 	public void addQuestion(Survey survey);
 	
-	//	질문 목록	
-	public List<Question> listQuetion(Survey survey);
-
 	//	질문 삭제
 	public void delQuestion(Question question);
 
 	//	Item ----------
-	
-	//	옵션 목록
-	public List<Item> listItem(Question question);
 	
 	//	옵션 추가
 	public void addItem(Question question);
@@ -48,12 +42,5 @@ public interface SurveyService {
 	
 	//	설문 수정
 	public void editSurvey(Survey survey);
-
-	//	질문 수정
-	public void editQuestion(List<Question> questions);
-
-	//	옵션 수정
-	public void editItem(List<Item> items);
-	
 
 }

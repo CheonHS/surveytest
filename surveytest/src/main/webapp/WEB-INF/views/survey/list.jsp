@@ -25,7 +25,7 @@
 	<div id="midDiv" align="center">
 		<c:if test="${!empty list }">
 			<c:forEach var="s" items="${list }" >
-				<a href="/survey?sId=${s.sId }">${s.rownum } / ${s.title }</a>
+				<a href="/survey/form?sId=${s.sId }">${s.rownum } / ${s.title }</a>
 			</c:forEach>
 		</c:if>
 		<c:if test="${empty list }">
@@ -34,7 +34,7 @@
 	</div>
 	<hr>
 	<div id="botDiv" align="center">
-		<a href="/survey/write">설문지작성</a>
+		<a href="/survey/write">작성</a>
 	</div>
 </body>
 <script>

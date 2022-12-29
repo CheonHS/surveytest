@@ -29,17 +29,16 @@ public class SurveyServiceImpl implements SurveyService {
 	//	설문 상세
 	@Override
 	public Survey surveyRow(Survey survey) {
-		return surveyMapper.surveyRow(survey);
 		
+		survey = surveyMapper.surveyRow(survey);
+		survey.setQuestions(surveyMapper.listQuetion(survey));
+		for(Question q : survey.getQuestions()) {
+			q.setItems(surveyMapper.listItem(q));
+		}
+		return survey;	
 	}
 	
 	//	Question ----------
-	
-	//	질문 목록
-	@Override
-	public List<Question> listQuetion(Survey survey) {
-		return surveyMapper.listQuetion(survey);
-	}
 	
 	//	질문 추가
 	@Override
@@ -51,19 +50,17 @@ public class SurveyServiceImpl implements SurveyService {
 	@Override
 	public void delQuestion(Question question) {
 		surveyMapper.delQuestion(question);
-		
-	}
+	}	
 	
-	//	옵션 목록
-	@Override
-	public List<Item> listItem(Question question) {
-		return surveyMapper.listItem(question);
-	}
+	//	Item ----------
+	
+	//	옵션 추가
 	@Override
 	public void addItem(Question question) {
 		surveyMapper.addItem(question);
-		
 	}
+	
+	//	옵션 삭제
 	@Override
 	public void delItem(Item item) {
 		surveyMapper.delItem(item);
@@ -73,23 +70,21 @@ public class SurveyServiceImpl implements SurveyService {
 	@Override
 	public void delItemInQuestion(Question question) {
 		surveyMapper.delItemInQuestion(question);
+	}
 	
 	//	Update ----------
-		
-	}
+	
 	@Override
 	public void editSurvey(Survey survey) {
 		surveyMapper.editSurvey(survey);
-		
-	}
-	@Override
-	public void editQuestion(List<Question> questions) {
-		surveyMapper.editQuestion(questions);
-		
-	}
-	@Override
-	public void editItem(List<Item> items) {
-		surveyMapper.editItem(items);	
+		if(!survey.getQuestions().isEmpty()) {
+			surveyMapper.editQuestion(survey.getQuestions());
+			for(Question q : survey.getQuestions()) {
+				if(!q.getItems().isEmpty()) {
+					surveyMapper.editItem(q.getItems());
+				}
+			}
+		}	
 	}
 
 }

@@ -62,7 +62,7 @@
 					<c:forEach var="i" items="${qq.items }" >
 						<c:if test="${!empty i }">
 							<div class="iDiv" align="left">
-								${i.rownum } <input type="text" class="iValue" value="${i.iValue }">
+								<input type="text" class="iValue" value="${i.iValue }">
 								<button class="iDel">옵션 삭제</button>
 								<input type="hidden" class="iId" value="${i.iId }">	
 							</div>
@@ -78,7 +78,7 @@
 	</div><!-- midDiv -->
 	<hr>
 	<div id="botDiv" align="center">
-		
+		<a href="/survey/list">목록</a>
 	</div>
 </body>
 <script>
@@ -120,15 +120,13 @@
 			sDesc: s_desc,
 			questions: questions
 		};
-
 		console.log(survey);
-
+		
 		$.ajax({
-			type : "POST", 
-			url : "/survey/jsonUpdate",  
-			dataType : 'json',      
-			contentType : 'application/json',            
-			data : JSON.stringify(survey),                   
+			method : 'POST', 
+			url : "/survey/jsonUpdate",
+			contentType : 'application/json',         
+			data : JSON.stringify(survey)                 
 		})
 		.done(function( msg ) {
 		    $('#midDiv').html(msg);
@@ -142,7 +140,7 @@
 		let sId = $('#sId').val();
 		
 		$.ajax({
-			method: "POST",
+			method: 'POST',
 			url: "/survey/qAdd",
 			data: { sId: sId }
 		})
@@ -158,7 +156,7 @@
 		
 		
 		$.ajax({
-			method: "POST",
+			method: 'POST',
 			url: "/survey/qDel",
 			data: { sId: sId, qId: qId }
 		})
@@ -173,7 +171,7 @@
 		let qId = $(this).next().val();
 
 		$.ajax({
-			method: "POST",
+			method: 'POST',
 			url: "/survey/iAdd",
 			data: { sId: sId, qId: qId }
 		})
@@ -190,7 +188,7 @@
 		console.log(iId);
 		
 		$.ajax({
-			method: "POST",
+			method: 'POST',
 			url: "/survey/iDel",
 			data: { sId: sId, iId: iId }
 		})
